@@ -8,6 +8,8 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  talk = 'Hi!'
+
   constructor(public navCtrl: NavController) {
 
   }
