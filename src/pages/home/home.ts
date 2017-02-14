@@ -1,9 +1,14 @@
 import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {Talk} from "./Talk";
+import {Headers, RequestOptions} from "@angular/http";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/do";
+import {TalkService} from "../../providers/talkService";
 
 @Component({
   selector: 'page-home',
+  providers: [TalkService],
   template: `
 <ion-header>
   <ion-navbar>
@@ -24,13 +29,11 @@ export class HomePage {
 
   talks: Array<Talk>;
 
-  constructor(public navCtrl: NavController, public http: Http) {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
-    this.http.get('http://data.agenda.wedeploy.io/talks', options)
-      .do(x => console.log(x))
-      .map(res => res.json())
-      .subscribe(x => this.talks = x)
+  constructor(public navCtrl: NavController, public talkService: TalkService) {
+    this.talkService.getTalks()
+      .subscribe(x => {
+        this.talks = x
+      });
   }
 
   style(talk) {
@@ -41,5 +44,4 @@ export class HomePage {
       'margin-bottom': '20px'
     }
   }
-
 }
