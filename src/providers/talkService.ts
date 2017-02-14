@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptions} from "@angular/http";
 import "rxjs/add/operator/map";
-import {Talk} from "../pages/home/Talk";
+import {Talk} from "../pages/Talk";
 
 const ENDPOINT = 'http://data.agenda.wedeploy.io/talks';
 
@@ -23,12 +23,8 @@ export class TalkService {
       .map(res => <Talk[]> res.json().data)
   }
 
-  post() {
-    let talks = [
-      new Talk('ionic2', 'nhpatt', 'workshop', 'https://ionicframework.com/img/docs/ionic-docs-icon-back.png'),
-      new Talk('Rx', 'nhpatt', 'talk')
-    ];
-    let body = JSON.stringify(talks);
+  addTalk(talk: Talk) {
+    let body = JSON.stringify(talk);
     return this.http.post(ENDPOINT, body, this.createJSONHeaders());
   }
 
@@ -36,6 +32,5 @@ export class TalkService {
     let headers = new Headers({'Content-Type': 'application/json'});
     return new RequestOptions({headers: headers});
   }
-
 
 }

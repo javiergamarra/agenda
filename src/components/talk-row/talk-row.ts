@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from "@angular/core";
-import {Talk} from "../../pages/home/Talk";
+import {Talk} from "../../pages/Talk";
 
 @Component({
   selector: 'talk-row-component',
@@ -17,11 +17,7 @@ export class TalkRowComponent {
   @Output()
   onClick: EventEmitter<Talk> = new EventEmitter<Talk>();
 
-  text: string;
-
   constructor() {
-    console.log('Hello TalkRowComponent Component');
-    this.text = 'Hello World';
   }
 
   click() {
