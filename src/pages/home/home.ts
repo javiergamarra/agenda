@@ -30,7 +30,7 @@ export class HomePage {
   talks: Array<Talk>;
   showAddTalk: boolean = false;
 
-  constructor(public navCtrl: NavController, public talkService: TalkService) {
+  constructor(public talkService: TalkService) {
     this.talkService.getTalks()
       .subscribe(x => {
         this.talks = x
