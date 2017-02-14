@@ -16,7 +16,7 @@ import {TalkService} from "../../providers/talkService";
 </ion-header>
 
 <ion-content padding>
-  <talk-row-component *ngFor="let talk of talks" [talk]="talk"></talk-row-component>
+  <talk-row-component *ngFor="let talk of talks" [talk]="talk" (onClick)="onClick($event)"></talk-row-component>
 </ion-content>`
 })
 export class HomePage {
@@ -28,5 +28,9 @@ export class HomePage {
       .subscribe(x => {
         this.talks = x
       });
+  }
+
+  onClick($event) {
+    console.log($event);
   }
 }
