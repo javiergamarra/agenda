@@ -3,25 +3,22 @@ import {Http, Headers, RequestOptions} from "@angular/http";
 import "rxjs/add/operator/map";
 import {Talk} from "../pages/home/Talk";
 
+const ENDPOINT = 'http://data.agenda.wedeploy.io/talks';
+
 @Injectable()
 export class TalkService {
 
   constructor(public http: Http) {
-    console.log('Hello TalkService Provider');
   }
 
   getTalks() {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
-    return this.http.get('http://data.agenda.wedeploy.io/talks', options)
+    return this.http.get(ENDPOINT, this.createJSONHeaders())
       .do(x => console.log(x))
       .map(res => res.json())
   }
 
   removeAll() {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
-    return this.http.delete('http://data.agenda.wedeploy.io/talks', options)
+    return this.http.delete(ENDPOINT, this.createJSONHeaders())
       .do(x => console.log(x))
       .map(res => <Talk[]> res.json().data)
   }
@@ -32,9 +29,12 @@ export class TalkService {
       new Talk('Rx', 'nhpatt', 'talk')
     ];
     let body = JSON.stringify(talks);
+    return this.http.post(ENDPOINT, body, this.createJSONHeaders());
+  }
+
+  createJSONHeaders() {
     let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
-    return this.http.post('http://data.agenda.wedeploy.io/talks', body, options);
+    return new RequestOptions({headers: headers});
   }
 
 
