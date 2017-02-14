@@ -5,9 +5,12 @@
 </ion-header>
 
 <ion-content padding>
+
+  <input #input_search (keyup)="search(input_search.value)">
+
   <div [ngStyle]="style(talk)">
     <h3>{{talk.name}}</h3>{{talk.speaker}}
 
-    <img [src]="talk.icon">
+    <button (click)="onClickMe()">fav</button>
   </div>
 </ion-content>

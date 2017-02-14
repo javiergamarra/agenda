@@ -3,7 +3,19 @@ import {NavController} from "ionic-angular";
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  template: `
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div [ngStyle]="style(talk)">
+    <h3>{{talk.name}}</h3>{{talk.speaker}}
+  </div>
+</ion-content>`
 })
 export class HomePage {
 
