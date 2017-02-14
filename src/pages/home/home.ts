@@ -15,6 +15,8 @@ import {Talk} from "./Talk";
 
   <div [ngStyle]="style(talk)" *ngFor="let talk of talks; let i = index">
     <h3>{{talk.name}}</h3>{{talk.speaker}} {{i}}
+    
+    <div style="border: 1px solid red" *ngIf="i != talks.length-1"></div>
   </div>
 </ion-content>`
 })
