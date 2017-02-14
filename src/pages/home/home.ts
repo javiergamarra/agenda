@@ -13,8 +13,8 @@ import {Talk} from "./Talk";
 
 <ion-content padding>
 
-  <div [ngStyle]="style(talk)" *ngFor="let talk of talks">
-    <h3>{{talk.name}}</h3>{{talk.speaker}}
+  <div [ngStyle]="style(talk)" *ngFor="let talk of talks; let i = index">
+    <h3>{{talk.name}}</h3>{{talk.speaker}} {{i}}
   </div>
 </ion-content>`
 })
