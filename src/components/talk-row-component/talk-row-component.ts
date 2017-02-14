@@ -7,6 +7,9 @@ import {Talk} from "../../pages/home/Talk";
 })
 export class TalkRowComponent {
 
+  @Input()
+  talk: Talk;
+
   text: string;
 
   constructor() {

@@ -23,7 +23,7 @@ import {TalkService} from "../../providers/talkService";
     <!--<div style="border: 1px solid red" *ngIf="i != talks.length-1"></div>-->
   <!--</div>-->
   
-  <talk-row-component *ngFor="let talk of talks"></talk-row-component>
+  <talk-row-component *ngFor="let talk of talks" [talk]="talk"></talk-row-component>
 </ion-content>`
 })
 export class HomePage {
