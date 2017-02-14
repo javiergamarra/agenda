@@ -10,7 +10,8 @@ export class HomePage {
   talk = {
     name: 'ionic2',
     speaker: 'nhpatt',
-    category: 'workshop'
+    category: 'workshop',
+    icon: 'https://ionicframework.com/img/docs/ionic-docs-icon-back.png'
   };
 
   constructor(public navCtrl: NavController) {
