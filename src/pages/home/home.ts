@@ -22,12 +22,15 @@ import {Talk} from "./Talk";
 })
 export class HomePage {
 
-  talks = [
-    new Talk('ionic2', 'nhpatt', 'workshop', 'https://ionicframework.com/img/docs/ionic-docs-icon-back.png'),
-    new Talk('Rx', 'nhpatt', 'talk')
-  ];
+  talks: Array<Talk>;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public http: Http) {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    this.http.get('http://data.agenda.wedeploy.io/talks', options)
+      .do(x => console.log(x))
+      .map(res => res.json())
+      .subscribe(x => this.talks = x)
   }
 
   style(talk) {
