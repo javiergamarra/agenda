@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {Talk} from "./Talk";
-import {Headers, RequestOptions} from "@angular/http";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import {TalkService} from "../../providers/talkService";
@@ -18,11 +17,13 @@ import {TalkService} from "../../providers/talkService";
 
 <ion-content padding>
 
-  <div [ngStyle]="style(talk)" *ngFor="let talk of talks; let i = index">
-    <h3>{{talk.name}}</h3>{{talk.speaker}} {{i}}
-    
-    <div style="border: 1px solid red" *ngIf="i != talks.length-1"></div>
-  </div>
+  <!--<div [ngStyle]="style(talk)" *ngFor="let talk of talks; let i = index">-->
+    <!--<h3>{{talk.name}}</h3>{{talk.speaker}} {{i}}-->
+    <!---->
+    <!--<div style="border: 1px solid red" *ngIf="i != talks.length-1"></div>-->
+  <!--</div>-->
+  
+  <talk-row-component *ngFor="let talk of talks"></talk-row-component>
 </ion-content>`
 })
 export class HomePage {
