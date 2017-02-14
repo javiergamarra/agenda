@@ -5,8 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <div style="border-left: 2px solid #00274F;padding-left: 10px;"
-       [style.border-color]="color(talk.category)">
+  <div [ngStyle]="style(talk)">
     <h3>{{talk.name}}</h3>{{talk.speaker}}
   </div>
 </ion-content>
