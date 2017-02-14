@@ -1,0 +1,10 @@
+<ion-item>
+  <ion-label stacked color="primary">Name</ion-label>
+  <ion-input name="name" type="text" required #name></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label stacked color="primary">Speaker</ion-label>
+  <ion-input name="speaker" type="text" required #speaker></ion-input>
+</ion-item>
+
+<button ion-button (click)="addTalk(name.value, speaker.value)" type="submit" block>Add Talk</button>
