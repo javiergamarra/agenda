@@ -7,10 +7,12 @@ import {NavController} from "ionic-angular";
 })
 export class HomePage {
 
-  talk = 'Hi!';
+  talk = {
+    name: 'ionic2',
+    speaker: 'nhpatt'
+  };
 
   constructor(public navCtrl: NavController) {
-    setTimeout(() => this.talk = 'Hello!', 2000)
   }
 
 }
