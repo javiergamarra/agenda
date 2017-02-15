@@ -15,11 +15,17 @@ export class AddTalkComponent {
 
   constructor(public talkService: TalkService, public fb: FormBuilder) {
     this.nameControl = new FormControl('', Validators.required);
-    this.speakerControl = new FormControl('', Validators.required);
+    this.speakerControl = new FormControl('', Validators.compose([Validators.required, this.speakerValidator]));
     this.userForm = fb.group({
       name: this.nameControl,
       speaker: this.speakerControl
     });
+  }
+
+  speakerValidator(control: FormControl) {
+    if (control.value != 'nhpatt') {
+      return {invalidSpeaker: true};
+    }
   }
 
   addTalk() {
