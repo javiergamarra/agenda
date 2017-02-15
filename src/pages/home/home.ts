@@ -20,7 +20,9 @@ import {Observable} from "rxjs";
     <add-talk></add-talk>
   </div>
   
-  <input type="text" #searchInput/>
+  <input type="text" #searchInput [(ngModel)]="search"/>
+  
+  {{search}}
 
   <talk-row-component *ngFor="let talk of talks | async" [talk]="talk" (onClick)="onClick($event)"></talk-row-component>
 </ion-content>`
@@ -29,6 +31,7 @@ export class HomePage implements OnInit {
 
   talks: any;
   showAddTalk: boolean = false;
+  search
 
   @ViewChild('searchInput') input: ElementRef;
 
