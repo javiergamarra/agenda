@@ -6,6 +6,7 @@ import {Talk} from "../../pages/Talk";
   template: `
   <div [ngStyle]="style()" (click)="click()">
     <h3>{{talk.name}}</h3>{{talk.speaker}}
+    {{date() | date:"HH:mm"}}
   </div>
 `
 })
@@ -31,6 +32,10 @@ export class TalkRowComponent {
       'padding-left': '10px',
       'margin-bottom': '20px'
     }
+  }
+
+  date() {
+    return new Date();
   }
 
 }
