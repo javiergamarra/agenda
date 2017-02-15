@@ -1,7 +1,9 @@
 <form (ngSubmit)="addTalk(f)" [formGroup]="userForm">
   <ion-item>
-    <ion-label stacked color="primary">Name</ion-label>
-    <ion-input name="name" type="text" required
+    <ion-label stacked color="primary">Name
+      <div *ngIf="!nameControl.valid && nameControl.touched">Name is invalid</div>
+    </ion-label>
+    <ion-input name="name" type="text" required minlength="3"
                [formControl]="nameControl">
     </ion-input>
   </ion-item>
