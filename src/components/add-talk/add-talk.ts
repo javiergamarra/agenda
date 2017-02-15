@@ -12,9 +12,12 @@ export class AddTalkComponent {
   constructor(public talkService: TalkService) {
   }
 
-  addTalk(name, speaker) {
-    let talk = new Talk(name, speaker, "workshop");
-    this.talkService.addTalk(talk).subscribe(x => console.log(x));
+  addTalk(form) {
+
+    console.log(form);
+
+    // let talk = new Talk(name, speaker, "workshop");
+    // this.talkService.addTalk(talk).subscribe(x => console.log(x));
   }
 
 }
