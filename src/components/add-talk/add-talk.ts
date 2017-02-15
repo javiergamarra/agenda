@@ -5,7 +5,10 @@ import {FormControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 @Component({
   selector: 'add-talk',
   templateUrl: 'add-talk.html',
-  providers: [TalkService]
+  providers: [TalkService],
+  host: {
+    '(click)': 'displayMessage()'
+  }
 })
 export class AddTalkComponent {
 
@@ -28,6 +31,10 @@ export class AddTalkComponent {
     if (control.value != 'nhpatt') {
       return {invalidSpeaker: true};
     }
+  }
+
+  displayMessage() {
+    console.log('message!')
   }
 
   addTalk() {
