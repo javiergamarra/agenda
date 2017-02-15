@@ -1,5 +1,4 @@
 import {Component} from "@angular/core";
-import {NavController} from "ionic-angular";
 import {Talk} from "../Talk";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
