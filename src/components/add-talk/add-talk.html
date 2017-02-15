@@ -2,13 +2,13 @@
   <ion-item>
     <ion-label stacked color="primary">Name</ion-label>
     <ion-input name="name" type="text" required
-               [formControl]="userForm.controls['name']">
+               [formControl]="nameControl">
     </ion-input>
   </ion-item>
   <ion-item>
     <ion-label stacked color="primary">Speaker</ion-label>
     <ion-input name="speaker" type="text" required
-               [formControl]="userForm.controls['speaker']"></ion-input>
+               [formControl]="speakerControl"></ion-input>
   </ion-item>
 
   <button ion-button type="submit" block [disabled]="!userForm.valid">
