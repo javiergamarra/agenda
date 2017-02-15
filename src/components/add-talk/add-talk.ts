@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {TalkService} from "../../providers/talkService";
-import {FormControl, FormBuilder, FormGroup} from "@angular/forms";
+import {FormControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'add-talk',
@@ -9,12 +9,16 @@ import {FormControl, FormBuilder, FormGroup} from "@angular/forms";
 })
 export class AddTalkComponent {
 
-  private userForm: FormGroup;
+  userForm: FormGroup;
+  nameControl: FormControl;
+  speakerControl: FormControl;
 
   constructor(public talkService: TalkService, public fb: FormBuilder) {
+    this.nameControl = new FormControl('', Validators.required);
+    this.speakerControl = new FormControl('', Validators.required);
     this.userForm = fb.group({
-      name: '',
-      speaker: ''
+      name: this.nameControl,
+      speaker: this.speakerControl
     });
   }
 
