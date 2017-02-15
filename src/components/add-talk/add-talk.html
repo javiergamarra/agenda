@@ -1,13 +1,18 @@
-<form (ngSubmit)="addTalk(f)" #f="ngForm">
+<form (ngSubmit)="addTalk(f)" [formGroup]="userForm">
   <ion-item>
     <ion-label stacked color="primary">Name</ion-label>
-    <ion-input name="name" type="text" required ngModel></ion-input>
+    <ion-input name="name" type="text" required
+               [formControl]="userForm.controls['name']">
+    </ion-input>
   </ion-item>
   <ion-item>
     <ion-label stacked color="primary">Speaker</ion-label>
-    <ion-input name="speaker" type="text" required ngModel></ion-input>
+    <ion-input name="speaker" type="text" required
+               [formControl]="userForm.controls['speaker']"></ion-input>
   </ion-item>
 
-  <button ion-button type="submit" block [disabled]="!f.form.valid">Add Talk</button>
+  <button ion-button type="submit" block [disabled]="!userForm.valid">
+    Add Talk
+  </button>
 
 </form>

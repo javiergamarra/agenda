@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {TalkService} from "../../providers/talkService";
-import {Talk} from "../../pages/Talk";
-import {FormControl} from "@angular/forms";
+import {FormControl, FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'add-talk',
@@ -10,16 +9,18 @@ import {FormControl} from "@angular/forms";
 })
 export class AddTalkComponent {
 
-  name: FormControl;
+  private userForm: FormGroup;
 
-  constructor(public talkService: TalkService) {
+  constructor(public talkService: TalkService, public fb: FormBuilder) {
+    this.userForm = fb.group({
+      name: '',
+      speaker: ''
+    });
   }
 
-  addTalk(form) {
+  addTalk() {
 
-    this.name = form.controls.name;
-    this.name.hasError('required');
-    console.log(form, this.name);
+    console.log(this.userForm.value);
 
     // let talk = new Talk(name, speaker, "workshop");
     // this.talkService.addTalk(talk).subscribe(x => console.log(x));
