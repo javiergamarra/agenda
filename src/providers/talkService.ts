@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptions, URLSearchParams} from "@angular/http";
 import {Talk} from "../pages/Talk";
-import * as Rx from 'rx';
 
 const ENDPOINT = 'http://data.agenda.wedeploy.io/talks';
 
@@ -13,9 +12,7 @@ export class TalkService {
 
   getTalks(name) {
     let params = new URLSearchParams();
-
-    let obj = {"*":{"operator":"fuzzy","value":{"query":name}}};
-
+    let obj = {"*": {"operator": "fuzzy", "value": {"query": name}}};
     params.set('search', JSON.stringify(obj));
 
     return this.http.get(ENDPOINT, this.createJSONHeaders(params))
@@ -24,18 +21,23 @@ export class TalkService {
       .map(x => x.documents)
   }
 
+  getAllTalks() {
+    return this.http.get(ENDPOINT, this.createJSONHeaders())
+      .map(res => res.json())
+  }
+
   removeAll() {
-    return this.http.delete(ENDPOINT, this.createJSONHeaders({}))
+    return this.http.delete(ENDPOINT, this.createJSONHeaders())
       .do(x => console.log(x))
       .map(res => <Talk[]> res.json().data)
   }
 
   addTalk(talk: Talk) {
     let body = JSON.stringify(talk);
-    return this.http.post(ENDPOINT, body, this.createJSONHeaders({}));
+    return this.http.post(ENDPOINT, body, this.createJSONHeaders());
   }
 
-  createJSONHeaders(search) {
+  createJSONHeaders(search: any = '') {
     let headers = new Headers({'Content-Type': 'application/json'});
     return new RequestOptions({headers, search});
   }

@@ -20,10 +20,8 @@ import {Observable} from "rxjs";
     <add-talk></add-talk>
   </div>
   
-  <input type="text" #searchInput [(ngModel)]="search"/>
+  <input type="text" #searchInput/>
   
-  {{search}}
-
   <talk-row-component *ngFor="let talk of talks | async" [talk]="talk" (onClick)="onClick($event)"></talk-row-component>
 </ion-content>`
 })
@@ -31,20 +29,21 @@ export class HomePage implements OnInit {
 
   talks: any;
   showAddTalk: boolean = false;
-  search
+  search;
 
   @ViewChild('searchInput') input: ElementRef;
 
   ngOnInit(): void {
-    this.talks = Observable.fromEvent(this.input.nativeElement, 'keyup')
-      .map((e: any) => e.target.value)
-      .filter(text => text.length > 1)
-      .debounceTime(700)
-      .distinctUntilChanged()
-      .switchMap(term => this.talkService.getTalks(term));
+    // this.talks = Observable.fromEvent(this.input.nativeElement, 'keyup')
+    //   .map((e: any) => e.target.value)
+    //   .filter(text => text.length > 1)
+    //   .debounceTime(700)
+    //   .distinctUntilChanged()
+    //   .switchMap(term => this.talkService.getTalks(term))
   }
 
   constructor(public talkService: TalkService) {
+    this.talks = talkService.getAllTalks();
   }
 
   onClick($event) {
