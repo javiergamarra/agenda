@@ -20,6 +20,8 @@ export class AddTalkComponent {
       name: this.nameControl,
       speaker: this.speakerControl
     });
+
+    this.nameControl.valueChanges.subscribe(x => console.log(x));
   }
 
   speakerValidator(control: FormControl) {
