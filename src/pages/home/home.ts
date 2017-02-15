@@ -27,18 +27,21 @@ import {Observable} from "rxjs";
 })
 export class HomePage implements OnInit {
 
-  ngOnInit(): void {
-    Observable.fromEvent(this.input.nativeElement, 'keyup')
-      .subscribe(x => console.log(x))
-  }
-
   talks: any;
   showAddTalk: boolean = false;
 
   @ViewChild('searchInput') input: ElementRef;
 
+  ngOnInit(): void {
+    this.talks = Observable.fromEvent(this.input.nativeElement, 'keyup')
+      .map((e: any) => e.target.value)
+      .filter(text => text.length > 1)
+      .debounceTime(700)
+      .distinctUntilChanged()
+      .switchMap(term => this.talkService.getTalks(term));
+  }
+
   constructor(public talkService: TalkService) {
-    this.talks = this.talkService.getTalks();
   }
 
   onClick($event) {
