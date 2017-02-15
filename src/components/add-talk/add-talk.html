@@ -8,6 +8,6 @@
     <ion-input name="speaker" type="text" required ngModel></ion-input>
   </ion-item>
 
-  <button ion-button type="submit" block>Add Talk</button>
+  <button ion-button type="submit" block [disabled]="!f.form.valid">Add Talk</button>
 
 </form>
