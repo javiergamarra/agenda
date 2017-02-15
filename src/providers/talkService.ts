@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptions, URLSearchParams} from "@angular/http";
-import "rxjs/add/operator/map";
 import {Talk} from "../pages/Talk";
+import * as Rx from 'rx';
 
 const ENDPOINT = 'http://data.agenda.wedeploy.io/talks';
 
@@ -13,11 +13,15 @@ export class TalkService {
 
   getTalks(name) {
     let params = new URLSearchParams();
-    params.set('filter', JSON.stringify({name}));
+
+    let obj = {"*":{"operator":"fuzzy","value":{"query":name}}};
+
+    params.set('search', JSON.stringify(obj));
 
     return this.http.get(ENDPOINT, this.createJSONHeaders(params))
       .do(x => console.log(x))
       .map(res => res.json())
+      .map(x => x.documents)
   }
 
   removeAll() {
