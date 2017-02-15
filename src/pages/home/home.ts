@@ -21,19 +21,16 @@ import {TalkService} from "../../providers/talkService";
     <add-talk></add-talk>
   </div>
 
-  <talk-row-component *ngFor="let talk of talks" [talk]="talk" (onClick)="onClick($event)"></talk-row-component>
+  <talk-row-component *ngFor="let talk of talks | async" [talk]="talk" (onClick)="onClick($event)"></talk-row-component>
 </ion-content>`
 })
 export class HomePage {
 
-  talks: Array<Talk>;
+  talks: any;
   showAddTalk: boolean = false;
 
   constructor(public talkService: TalkService) {
-    this.talkService.getTalks()
-      .subscribe(x => {
-        this.talks = x
-      });
+    this.talks = this.talkService.getTalks();
   }
 
   onClick($event) {
