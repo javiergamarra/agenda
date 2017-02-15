@@ -1,8 +1,8 @@
-import {Component} from "@angular/core";
-import {Talk} from "../Talk";
+import {Component, ViewChild, ElementRef, OnInit} from "@angular/core";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import {TalkService} from "../../providers/talkService";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'page-home',
@@ -16,18 +16,26 @@ import {TalkService} from "../../providers/talkService";
 </ion-header>
 <ion-content padding>
 
-
   <div *ngIf="showAddTalk">
     <add-talk></add-talk>
   </div>
+  
+  <input type="text" #searchInput/>
 
   <talk-row-component *ngFor="let talk of talks | async" [talk]="talk" (onClick)="onClick($event)"></talk-row-component>
 </ion-content>`
 })
-export class HomePage {
+export class HomePage implements OnInit {
+
+  ngOnInit(): void {
+    Observable.fromEvent(this.input.nativeElement, 'keyup')
+      .subscribe(x => console.log(x))
+  }
 
   talks: any;
   showAddTalk: boolean = false;
+
+  @ViewChild('searchInput') input: ElementRef;
 
   constructor(public talkService: TalkService) {
     this.talks = this.talkService.getTalks();
