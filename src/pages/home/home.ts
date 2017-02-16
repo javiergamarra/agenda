@@ -10,7 +10,7 @@ import {TalkService} from "../../providers/talkService";
 <ion-header>
   <ion-navbar>
     <ion-title>Home</ion-title>
-    <button (click)="showAddTalkPanel()">Add talk</button>
+    <button (click)="showAddTalkPanel()" ion-button color="light">Add talk</button>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
