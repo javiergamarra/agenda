@@ -10,7 +10,7 @@ import {Talk} from "../../pages/Talk";
     <ion-icon name="logo-angular"></ion-icon>
   {{talk.speaker}}
     {{date() | date:"HH:mm"}}
-</ion-card-content>
+  </ion-card-content>
 </ion-card>
 `
 })
