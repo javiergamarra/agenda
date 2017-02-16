@@ -2,7 +2,6 @@ import {Component, ViewChild, ElementRef, OnInit} from "@angular/core";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import {TalkService} from "../../providers/talkService";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'page-home',
@@ -20,7 +19,10 @@ import {Observable} from "rxjs";
     <add-talk></add-talk>
   </div>
   
-  <input type="text" #searchInput/>
+  <ion-item>
+    <ion-label floating>Search</ion-label>
+    <ion-input type="text" #searchInput></ion-input>
+  </ion-item>
   
   <talk-row-component *ngFor="let talk of talks | async" [talk]="talk" (onClick)="onClick($event)"></talk-row-component>
 </ion-content>`
