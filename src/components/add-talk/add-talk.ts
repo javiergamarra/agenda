@@ -19,8 +19,6 @@ export class AddTalkComponent {
   speakerControl: FormControl;
 
   constructor(public talkService: TalkService, public fb: FormBuilder, public navCtrl: NavController) {
-    console.log('hi!')
-
     this.nameControl = new FormControl('', Validators.required);
     this.speakerControl = new FormControl('', Validators.compose([Validators.required, this.speakerValidator]));
     this.userForm = fb.group({

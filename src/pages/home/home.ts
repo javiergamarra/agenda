@@ -15,13 +15,9 @@ import {TalkService} from "../../providers/talkService";
 </ion-header>
 <ion-content padding>
 
-<a [routerLink]="['addtalk']">Add Talk</a>
-
   <div *ngIf="showAddTalk">
     <add-talk></add-talk>
   </div>
-  
-  <router-outlet></router-outlet>
   
   <ion-item>
     <ion-label floating>Search</ion-label>
