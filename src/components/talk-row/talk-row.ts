@@ -7,6 +7,7 @@ import {Talk} from "../../pages/Talk";
 <ion-card [ngStyle]="style()" (click)="click()">
   <ion-card-header>{{talk.name}}</ion-card-header>
   <ion-card-content>
+    <ion-icon name="logo-angular"></ion-icon>
   {{talk.speaker}}
     {{date() | date:"HH:mm"}}
 </ion-card-content>
