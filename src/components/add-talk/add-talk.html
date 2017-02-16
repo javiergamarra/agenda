@@ -12,9 +12,11 @@
     <ion-input name="speaker" type="text" required
                [formControl]="speakerControl"></ion-input>
   </ion-item>
+  <ion-item>
+    <ion-label stacked color="primary">Start Time</ion-label>
+    <ion-datetime displayFormat="hh:mm" pickerFormat="hh mm"></ion-datetime>
+  </ion-item>
 
-  <button ion-button type="submit" block [disabled]="!userForm.valid">
-    Add Talk
-  </button>
+  <button ion-button color="primary" type="submit" block [disabled]="!userForm.valid">Add Talk</button>
 
 </form>
