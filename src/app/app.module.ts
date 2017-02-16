@@ -8,11 +8,17 @@ import {TabsPage} from "../pages/tabs/tabs";
 import {TalkRowComponent} from "../components/talk-row/talk-row";
 import {AddTalkComponent} from "../components/add-talk/add-talk";
 import {AddTalkPage} from "../pages/add-talk/add-talk";
+import { RouterModule } from '@angular/router';
+
+const routes = [
+  { path: '', component: HomePage},
+  { path: 'addtalk', component: AddTalkComponent}];
 
 @NgModule({
   declarations: [MyApp, AboutPage, ContactPage, HomePage, TabsPage, TalkRowComponent, AddTalkComponent, AddTalkPage],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    RouterModule.forRoot(routes)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
