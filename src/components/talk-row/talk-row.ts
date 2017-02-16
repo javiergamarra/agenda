@@ -4,14 +4,14 @@ import {Talk} from "../../pages/Talk";
 @Component({
   selector: 'talk-row',
   template: `
-<ion-card [ngStyle]="style()" (click)="click()">
-  <ion-card-header>{{talk.name}}</ion-card-header>
-  <ion-card-content>
-    <ion-icon name="logo-angular"></ion-icon>
-  {{talk.speaker}}
-    {{date() | date:"HH:mm"}}
-  </ion-card-content>
-</ion-card>
+  <ion-card [ngStyle]="style()" (click)="click()">
+    <ion-card-header>{{talk.name}}</ion-card-header>
+    <ion-card-content>
+      {{talk.speaker}}
+      {{date() | date:"HH:mm"}}
+      <ion-icon name="logo-angular"></ion-icon>
+    </ion-card-content>
+  </ion-card>
 `
 })
 export class TalkRowComponent {

@@ -2,7 +2,7 @@ import {Component, ViewChild, ElementRef, OnInit} from "@angular/core";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import {TalkService} from "../../providers/talkService";
-import { Storage } from '@ionic/storage';
+import {Storage} from "@ionic/storage";
 import {InAppBrowser} from "ionic-native";
 import {Observable} from "rxjs";
 
@@ -13,7 +13,9 @@ import {Observable} from "rxjs";
 <ion-header>
   <ion-navbar>
     <ion-title>Home</ion-title>
-    <button (click)="showAddTalkPanel()" ion-button color="light">Add talk</button>
+    <ion-buttons right>
+      <button (click)="showAddTalkPanel()" ion-button color="primary">Add talk</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -67,7 +69,7 @@ export class HomePage implements OnInit {
 
   onClick($event) {
     this.storage.get('visited')
-      .then(value => this.storage.set('visited', value ? value+1 : 1));
+      .then(value => this.storage.set('visited', value ? value + 1 : 1));
     console.log($event);
     let browser = new InAppBrowser('http://google.es');
     browser.show();
