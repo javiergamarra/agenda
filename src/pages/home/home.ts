@@ -4,6 +4,7 @@ import "rxjs/add/operator/do";
 import {TalkService} from "../../providers/talkService";
 import { Storage } from '@ionic/storage';
 import {InAppBrowser} from "ionic-native";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'page-home',
@@ -38,6 +39,16 @@ export class HomePage implements OnInit {
   @ViewChild('searchInput') input: ElementRef;
 
   ngOnInit(): void {
+
+    let obsA = Observable.interval(Math.random() * 1000).map(x => 'a');
+    let obsB = Observable.interval(Math.random() * 1000).map(x => 'b');
+
+    let topic = x => console.log(x);
+    // obsA.concat(obsB).subscribe(topic);
+    // obsA.zip(obsB).subscribe(topic);
+    // obsA.merge(obsB).subscribe(topic);
+    // obsA.race(obsB).subscribe(topic);
+    // obsA.combineLatest(obsB).subscribe(topic);
 
     this.storage.get('visited')
       .then(value => console.log(value));
