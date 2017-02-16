@@ -3,6 +3,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import {TalkService} from "../../providers/talkService";
 import { Storage } from '@ionic/storage';
+import {InAppBrowser} from "ionic-native";
 
 @Component({
   selector: 'page-home',
@@ -57,6 +58,8 @@ export class HomePage implements OnInit {
     this.storage.get('visited')
       .then(value => this.storage.set('visited', value ? value+1 : 1));
     console.log($event);
+    let browser = new InAppBrowser('http://google.es');
+    browser.show();
   }
 
   showAddTalkPanel() {
