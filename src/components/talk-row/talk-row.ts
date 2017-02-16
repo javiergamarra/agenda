@@ -2,12 +2,15 @@ import {Component, Input, Output, EventEmitter} from "@angular/core";
 import {Talk} from "../../pages/Talk";
 
 @Component({
-  selector: 'talk-row-component',
+  selector: 'talk-row',
   template: `
-  <div [ngStyle]="style()" (click)="click()">
-    <h3>{{talk.name}}</h3>{{talk.speaker}}
+<ion-card [ngStyle]="style()" (click)="click()">
+  <ion-card-header>{{talk.name}}</ion-card-header>
+  <ion-card-content>
+  {{talk.speaker}}
     {{date() | date:"HH:mm"}}
-  </div>
+</ion-card-content>
+</ion-card>
 `
 })
 export class TalkRowComponent {

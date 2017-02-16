@@ -24,7 +24,7 @@ import {TalkService} from "../../providers/talkService";
     <ion-input type="text" #searchInput></ion-input>
   </ion-item>
   
-  <talk-row-component *ngFor="let talk of talks | async" [talk]="talk" (onClick)="onClick($event)"></talk-row-component>
+  <talk-row *ngFor="let talk of talks | async" [talk]="talk" (onClick)="onClick($event)"></talk-row>
 </ion-content>`
 })
 export class HomePage implements OnInit {
@@ -42,10 +42,10 @@ export class HomePage implements OnInit {
     //   .debounceTime(700)
     //   .distinctUntilChanged()
     //   .switchMap(term => this.talkService.getTalks(term))
+    this.talks = this.talkService.getAllTalks();
   }
 
   constructor(public talkService: TalkService) {
-    this.talks = talkService.getAllTalks();
   }
 
   onClick($event) {
