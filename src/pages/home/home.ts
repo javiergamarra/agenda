@@ -2,6 +2,7 @@ import {Component, ViewChild, ElementRef, OnInit} from "@angular/core";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import {TalkService} from "../../providers/talkService";
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -36,6 +37,10 @@ export class HomePage implements OnInit {
   @ViewChild('searchInput') input: ElementRef;
 
   ngOnInit(): void {
+
+    this.storage.get('visited')
+      .then(value => console.log(value));
+
     // this.talks = Observable.fromEvent(this.input.nativeElement, 'keyup')
     //   .map((e: any) => e.target.value)
     //   .filter(text => text.length > 1)
@@ -45,10 +50,12 @@ export class HomePage implements OnInit {
     this.talks = this.talkService.getAllTalks();
   }
 
-  constructor(public talkService: TalkService) {
+  constructor(public talkService: TalkService, public storage: Storage) {
   }
 
   onClick($event) {
+    this.storage.get('visited')
+      .then(value => this.storage.set('visited', value ? value+1 : 1));
     console.log($event);
   }
 
