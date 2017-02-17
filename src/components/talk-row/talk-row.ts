@@ -7,9 +7,14 @@ import {Talk} from "../../pages/Talk";
   <ion-card [ngStyle]="style()" (click)="click()">
     <ion-card-header>{{talk.name}}</ion-card-header>
     <ion-card-content>
-      {{talk.speaker}}
+    
+    {{talk.speaker}} 
+    <ion-thumbnail style="width:20px">
+      <img src="assets/img/logo.png">
+    </ion-thumbnail>
+     <ion-icon name="logo-angular"></ion-icon>
       {{date() | date:"HH:mm"}}
-      <ion-icon name="logo-angular"></ion-icon>
+     
     </ion-card-content>
   </ion-card>
 `
