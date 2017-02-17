@@ -3,6 +3,7 @@ import {TalkService} from "../../providers/talkService";
 import {FormControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NavController} from "ionic-angular";
 import {AddTalkPage} from "../../pages/add-talk/add-talk";
+import {Talk} from "../../pages/Talk";
 
 @Component({
   selector: 'add-talk',
@@ -34,10 +35,9 @@ export class AddTalkComponent {
   }
 
   addTalk() {
-    console.log(this.userForm.value);
-    this.navCtrl.push(AddTalkPage, {value: this.userForm.value});
-    // let talk = new Talk(name, speaker, "workshop");
-    // this.talkService.addTalk(talk).subscribe(x => console.log(x));
+    // this.navCtrl.push(AddTalkPage, {value: this.userForm.value});
+    let talk = new Talk(this.nameControl.value, this.speakerControl.value, "workshop", this.dateControl.value);
+    this.talkService.addTalk(talk).subscribe(x => console.log(x));
   }
 
 }

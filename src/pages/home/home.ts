@@ -3,8 +3,8 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import {TalkService} from "../../providers/talkService";
 import {Storage} from "@ionic/storage";
-import {InAppBrowser} from "ionic-native";
-import {Observable} from "rxjs";
+// import {NativeStorage} from "ionic-native";
+import {NativeStorage} from "ionic-native";
 
 @Component({
   selector: 'page-home',
@@ -14,7 +14,7 @@ import {Observable} from "rxjs";
   <ion-navbar>
     <ion-title>Home</ion-title>
     <ion-buttons right>
-      <button (click)="showAddTalkPanel()" ion-button color="primary">Add talk</button>
+      <button tappable (click)="showAddTalkPanel()" ion-button color="primary">Add talk</button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -42,10 +42,10 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
 
-    let obsA = Observable.interval(Math.random() * 1000).map(x => 'a');
-    let obsB = Observable.interval(Math.random() * 1000).map(x => 'b');
-
-    let topic = x => console.log(x);
+    // let obsA = Observable.interval(Math.random() * 1000).map(x => 'a');
+    // let obsB = Observable.interval(Math.random() * 1000).map(x => 'b');
+    //
+    // let topic = x => console.log(x);
     // obsA.concat(obsB).subscribe(topic);
     // obsA.zip(obsB).subscribe(topic);
     // obsA.merge(obsB).subscribe(topic);
@@ -71,8 +71,22 @@ export class HomePage implements OnInit {
     this.storage.get('visited')
       .then(value => this.storage.set('visited', value ? value + 1 : 1));
     console.log($event);
-    let browser = new InAppBrowser('http://google.es');
-    browser.show();
+    // let browser = new InAppBrowser('http://google.es');
+    // browser.show();
+
+    NativeStorage.setItem('visited', 0)
+      .then(x => console.log('Writen: ' + x))
+      .catch(err => {
+        console.log('Error :(');
+        console.log(JSON.stringify(err))
+      });
+
+    NativeStorage.getItem('visited')
+      .then(x => console.log('Read: ' + x))
+      .catch(err => {
+        console.log('Error :(');
+        console.log(JSON.stringify(err))
+      });
   }
 
   showAddTalkPanel() {
