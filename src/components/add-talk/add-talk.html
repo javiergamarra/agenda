@@ -1,15 +1,14 @@
 <form (ngSubmit)="addTalk(f)" [formGroup]="userForm">
   <ion-item>
-    <ion-label stacked color="primary">Name
-      <div *ngIf="!nameControl.valid && nameControl.touched">Name is invalid</div>
-    </ion-label>
-    <ion-input name="name" type="text" required minlength="3"
+    <ion-label stacked color="primary">Name</ion-label>
+    <ion-input name="name" type="text" required minlength="3" id="nameInput"
                [formControl]="nameControl">
     </ion-input>
   </ion-item>
   <ion-item>
-    <ion-label stacked color="primary">Speaker</ion-label>
-    <ion-input name="speaker" type="text" required
+    <ion-label stacked color="primary">Speaker
+      <div *ngIf="!speakerControl.valid && speakerControl.touched">Speaker is invalid</div></ion-label>
+    <ion-input name="speaker" type="text" required minlength="3" id="speakerInput"
                [formControl]="speakerControl"></ion-input>
   </ion-item>
   <ion-item>
@@ -18,6 +17,6 @@
                   [formControl]="dateControl"></ion-datetime>
   </ion-item>
 
-  <button ion-button color="primary" type="submit" block [disabled]="!userForm.valid">Add Talk</button>
+  <button ion-button id="submitAddTalk" color="primary" type="submit" block [disabled]="!userForm.valid">Add Talk</button>
 
 </form>
